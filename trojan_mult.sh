@@ -130,7 +130,7 @@ green "======================="
 blue "请输入绑定到本VPS的域名"
 green "======================="
 read your_domain
-real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
+real_addr=`ping ${your_domain} -c 1 -4 | sed '1{s/[^(]*(//;s/).*//;q}'`
 local_addr=`curl ipv4.icanhazip.com`
 if [ $real_addr == $local_addr ] ; then
 	green "=========================================="
@@ -339,7 +339,7 @@ blue "请输入绑定到本VPS的域名"
 blue "务必与之前失败使用的域名一致"
 green "======================="
 read your_domain
-real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
+real_addr=`ping ${your_domain} -c 1 -4 | sed '1{s/[^(]*(//;s/).*//;q}'`
 local_addr=`curl ipv4.icanhazip.com`
 if [ $real_addr == $local_addr ] ; then
     ~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
